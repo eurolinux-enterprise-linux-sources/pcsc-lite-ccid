@@ -1,0 +1,23 @@
+diff -up ./readers/supported_readers.txt.yubikey_2 ./readers/supported_readers.txt
+--- ./readers/supported_readers.txt.yubikey_2	2016-06-23 15:45:33.152338328 -0700
++++ ./readers/supported_readers.txt	2016-06-23 15:59:10.636954394 -0700
+@@ -87,6 +87,7 @@
+ 
+ # OMNIKEY AG
+ 0x076B:0x3021:OMNIKEY AG CardMan 3121
++0x076B:0x3022:OMNIKEY AG CardMan 3121-1
+ 
+ # Precise Biometrics
+ 0x076B:0xA022:Precise Biometrics Sense MC
+@@ -438,6 +439,11 @@
+ 0x1050:0x0111:Yubico Yubikey NEO OTP+CCID
+ 0x1050:0x0112:Yubico Yubikey NEO CCID
+ 0x1050:0x0115:Yubico Yubikey NEO U2F+CCID
++0x1050:0x0116:Yubico Yubikey NEO OTP+U2F+CCID
++0x1050:0x0404:Yubico Yubikey 4 CCID
++0x1050:0x0405:Yubico Yubikey 4 OTP+CCID
++0x1050:0x0406:Yubico Yubikey 4 U2F+CCID
++0x1050:0x0407:Yubico Yubikey 4 OTP+U2F+CCID
+ 
+ ##########################
+ # section: unsupported

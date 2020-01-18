@@ -4,7 +4,7 @@
 
 Name:           pcsc-lite-ccid
 Version:        1.4.10
-Release:        10%{?dist}
+Release:        12%{?dist}
 Summary:        Generic USB CCID smart card reader driver
 
 Group:          System Environment/Libraries
@@ -15,6 +15,9 @@ Patch1:         ccid-1.4.10-voltage.patch
 Patch2:		ccid-1.4.10-omnikey-3121.patch
 Patch3:		ccid-1.4.10-maxreaders.patch
 Patch4:		ccid-1.4.10-yubikey.patch
+Patch5:		ccid-readers-3.4.20.patch
+Patch6:		ccid-1.4.10-max-cpu-bug.patch
+
 
 BuildRequires:  libusb1-devel
 BuildRequires:  pcsc-lite-devel >= %{pcsc_lite_ver}
@@ -37,6 +40,8 @@ PC/SC Lite daemon.
 %patch2 -b .omnikey
 %patch3 -b .maxreaders
 %patch4 -b .yubikey
+%patch5 -b .yubikey_2
+%patch6 -b .max_cpu_bug
 
 
 %build
@@ -64,6 +69,12 @@ rm -rf $RPM_BUILD_ROOT/%{_sysconfdir}/reader.conf.d
 
 
 %changelog
+* Thu Jun 23 2016 Robert Relyea <rrelyea@redhat.com - 1.4.10-12
+- Fix cpu busy waiting if the last USB device has been removed.
+
+* Thu Jun 23 2016 Robert Relyea <rrelyea@redhat.com - 1.4.10-11
+- Add support for missing readers (mostly yubikey 4)
+
 * Mon Jul 6 2015 Robert Relyea <rrelyea@redhat.com - 1.4.10-10
 - fix corrupted patch
 

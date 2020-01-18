@@ -1,0 +1,77 @@
+diff -up ./src/ccid_usb.c.max_cpu_bug ./src/ccid_usb.c
+--- ./src/ccid_usb.c.max_cpu_bug	2012-06-22 00:25:20.000000000 -0700
++++ ./src/ccid_usb.c	2016-06-29 17:17:11.284337349 -0700
+@@ -154,6 +154,36 @@ status_t OpenUSB(unsigned int reader_ind
+ } /* OpenUSB */
+ 
+ 
++ /*****************************************************************************
++  *
++  *                                      close_libusb_if_needed
++  *                                      (pulled from upstream ccid_usb)
++  *
++  ****************************************************************************/
++ static void close_libusb_if_needed(void)
++ {
++         int i, to_exit = TRUE;
++ 
++         if (NULL == ctx)
++                 return;
++ 
++         /* if at least 1 reader is still in use we do not exit libusb */
++         for (i=0; i<CCID_DRIVER_MAX_READERS; i++)
++         {
++                 if (usbDevice[i].dev_handle != NULL)
++                         to_exit = FALSE;
++         }
++ 
++         if (to_exit)
++         {
++                 DEBUG_INFO("libusb_exit");
++                 libusb_exit(ctx);
++                 ctx = NULL;
++         }
++} /* close_libusb_if_needed */
++ 
++
++
+ /*****************************************************************************
+  *
+  *					OpenUSBByName
+@@ -609,8 +639,8 @@ again:
+ end:
+ 	if (usbDevice[reader_index].dev_handle == NULL)
+ 	{
+-		/* does not work for libusb <= 1.0.8 */
+-		/* libusb_exit(ctx); */
++	    close_libusb_if_needed();
++
+ 		if (claim_failed)
+ 			return STATUS_COMM_ERROR;
+ 		return STATUS_NO_SUCH_DEVICE;
+@@ -628,6 +658,9 @@ end1:
+ 	/* free bundle list */
+ 	bundleRelease(&plist);
+ 
++	if (return_value != STATUS_SUCCESS)
++		close_libusb_if_needed();
++
+ 	return return_value;
+ } /* OpenUSBByName */
+ 
+@@ -776,13 +809,13 @@ status_t CloseUSB(unsigned int reader_in
+ 			usbDevice[reader_index].interface);
+ 		(void)libusb_close(usbDevice[reader_index].dev_handle);
+ 
+-		/* does not work for libusb <= 1.0.8 */
+-		/* libusb_exit(ctx); */
+ 	}
+ 
+ 	/* mark the resource unused */
+ 	usbDevice[reader_index].dev_handle = NULL;
+ 	usbDevice[reader_index].interface = 0;
++	
++	close_libusb_if_needed();
+ 
+ 	return STATUS_SUCCESS;
+ } /* CloseUSB */
