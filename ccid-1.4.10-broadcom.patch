@@ -1,0 +1,49 @@
+diff -up ./readers/supported_readers.txt.broadcom ./readers/supported_readers.txt
+--- ./readers/supported_readers.txt.broadcom	2017-09-05 15:45:54.780972598 -0700
++++ ./readers/supported_readers.txt	2017-09-05 15:50:17.088475393 -0700
+@@ -181,10 +181,14 @@
+ 0x1B0E:0x1078:BLUTRONICS BLUDRIVE II CCID
+ 
+ # Broadcom Corp
+-0x0A5C:0x5800:Broadcom Corp 5880
+-0x0A5C:0x5802:Broadcom Corp 5880
+-0x0A5C:0x5802:Broadcom Corp 5880
++0x0A5C:0x5800:Broadcom Corp 5880 Unsupported Needs Microcode Update
++0x0A5C:0x5801:Broadcom Corp 5880 Unsupported Needs Microcode Update
+ 0x0A5C:0x5802:Broadcom Corp 5880
++0x0A5C:0x5804:Broadcom Corp 5880
++0x0A5C:0x5805:Broadcom Corp 5880 Unsupported Needs Microcode Update
++0x0A5C:0x5832:Broadcom Corp 5880
++0x0A5C:0x5833:Broadcom Corp 5880
++0x0A5C:0x5834:Broadcom Corp 5880
+ 
+ # C3PO
+ 0x0783:0x0007:C3PO TLTC2USB
+@@ -202,6 +206,7 @@
+ 0x046A:0x005B:Cherry GmbH SmartBoard XX1X
+ 0x046A:0x0070:Cherry GmbH SmartTerminal XX1X
+ 0x046A:0x0072:Cherry GmbH SmartTerminal ST-1275
++0x046A:0x0090:Cherry GmbH TC 1100
+ 
+ # COVADIS
+ 0x0982:0x0008:COVADIS VEGA-ALPHA
+@@ -461,8 +466,6 @@
+ # ATMEL
+ 0x03EB:0x6016:ATMEL VaultIC460
+ 
+-# Broadcom Corp
+-0x0A5C:0x5801:Broadcom Corp 5880
+ 
+ # C3PO
+ 0x0783:0x0003:C3PO LTC3x USB
+@@ -561,10 +564,6 @@
+ #0x08E6:0x5504:Gemalto Prox SU USB PC LinkReader (GemProxSU.txt)
+ #0x08E6:0x5504:Gemalto Prox SU USB PC LinkReader (GemProxSU.txt_i1)
+ 
+-#0x0A5C:0x5802:Broadcom Corp 5880 (Broadcom_5880v3.txt)
+-#0x0A5C:0x5802:Broadcom Corp 5880 (Broadcom_5880v4.txt)
+-#0x0A5C:0x5802:Broadcom Corp 5880 (Broadcom_5880v4.txt_i1)
+-
+ #0x0B81:0x0200:id3 Semiconductors CL1356T (id3_CL1356T.txt)
+ #0x0B81:0x0200:id3 Semiconductors CL1356T5 (id3_CL1356T5.txt)
+ 
