@@ -1,0 +1,12 @@
+diff -up ./src/ccid_ifdhandler.h.maxreaders ./src/ccid_ifdhandler.h
+--- ./src/ccid_ifdhandler.h.maxreaders	2015-07-06 16:01:10.922054803 -0700
++++ ./src/ccid_ifdhandler.h	2015-07-06 16:01:17.811926253 -0700
+@@ -51,7 +51,7 @@ extern int DriverOptions;
+  * The maximum number of readers is also limited in pcsc-lite (16 by default)
+  * see the definition of PCSCLITE_MAX_READERS_CONTEXTS in src/PCSC/pcsclite.h
+  */
+-#define CCID_DRIVER_MAX_READERS 16
++#define CCID_DRIVER_MAX_READERS 32
+ 
+ /*
+  * CCID driver specific functions

@@ -1,0 +1,41 @@
+diff -up ./src/commands.c.voltage ./src/commands.c
+--- ./src/commands.c.voltage	2013-03-16 06:52:33.000000000 -0700
++++ ./src/commands.c	2013-11-26 15:44:13.533254750 -0800
+@@ -97,6 +97,7 @@ RESPONSECODE CmdPowerOn(unsigned int rea
+ 	status_t res;
+ 	int length, count = 1;
+ 	unsigned int atr_len;
++	int init_voltage = 0;
+ 	RESPONSECODE return_value = IFD_SUCCESS;
+ 	_ccid_descriptor *ccid_descriptor = get_ccid_descriptor(reader_index);
+ 
+@@ -207,6 +208,7 @@ RESPONSECODE CmdPowerOn(unsigned int rea
+ 			voltage = 0;	/* auto */
+ 		}
+ 	}
++	init_voltage = voltage;
+ 
+ again:
+ 	cmd[0] = 0x62; /* IccPowerOn */
+@@ -256,14 +258,19 @@ again:
+ 		}
+ 
+ 		/* continue with 3 volts and 5 volts */
+-		if (voltage > 1)
++		if (voltage) 
+ 		{
+ 			const char *voltage_code[] = { "auto", "5V", "3V", "1.8V" };
+ 
+ 			DEBUG_INFO3("Power up with %s failed. Try with %s.",
+ 				voltage_code[voltage], voltage_code[voltage-1]);
+ 			voltage--;
+-			goto again;
++			if (voltage == 0) {
++			    voltage = 3;
++			}
++			if (voltage != init_voltage) {
++			    goto again;
++			}
+ 		}
+ 
+ 		return IFD_COMMUNICATION_ERROR;

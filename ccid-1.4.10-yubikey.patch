@@ -1,0 +1,20 @@
+diff -up ./readers/supported_readers.txt.yubikey ./readers/supported_readers.txt
+--- ./readers/supported_readers.txt.yubikey	2015-07-06 14:31:02.772908416 -0700
++++ ./readers/supported_readers.txt	2015-07-06 14:31:25.783479307 -0700
+@@ -437,6 +437,7 @@
+ # Yubico
+ 0x1050:0x0111:Yubico Yubikey NEO OTP+CCID
+ 0x1050:0x0112:Yubico Yubikey NEO CCID
++0x1050:0x0115:Yubico Yubikey NEO U2F+CCID
+ 
+ ##########################
+ # section: unsupported
+@@ -466,6 +467,8 @@
+ # Hewlett-Packard Company
+ 0x03F0:0x0036:Hewlett-Packard Company HP USB CCID Smartcard Keyboard
+ 0x03F0:0x1024:Hewlett-Packard Company HP USB Smart Card Keyboard
++0x03F0:0x104A:Hewlett-Packard Company HP Smart Card Terminal KUS1206
++0x03F0:0x164A:Hewlett-Packard Company HP Smart Card Terminal SK-2027
+ 
+ # KOBIL Systems
+ 0x0D46:0x4000:KOBIL Systems mIDentity M
