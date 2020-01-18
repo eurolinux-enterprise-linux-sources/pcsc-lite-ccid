@@ -1,0 +1,12 @@
+diff -up ./src/ccid.c.omnikey3022 ./src/ccid.c
+--- ./src/ccid.c.omnikey3022	2019-03-21 12:09:41.327974503 -0700
++++ ./src/ccid.c	2019-03-21 12:10:29.389078223 -0700
+@@ -54,7 +54,7 @@ int ccid_open_hack_pre(unsigned int read
+ 		case CARDMAN3121:
+ 			ccid_descriptor->dwNonStandardFlags = CCID_NON_STAND_OMK_3121_T1;
+ 			/* fall through */
+-		case CARDMAN3121+1:
++		/*case CARDMAN3121+1: */
+ 			/* Reader announces APDU but is in fact TPDU */
+ 			ccid_descriptor->dwFeatures &= ~CCID_CLASS_EXCHANGE_MASK;
+ 			ccid_descriptor->dwFeatures |= CCID_CLASS_TPDU;

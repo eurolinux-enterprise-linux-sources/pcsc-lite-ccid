@@ -4,7 +4,7 @@
 
 Name:           pcsc-lite-ccid
 Version:        1.4.10
-Release:        14%{?dist}
+Release:        15%{?dist}
 Summary:        Generic USB CCID smart card reader driver
 
 Group:          System Environment/Libraries
@@ -20,6 +20,7 @@ Patch6:		ccid-1.4.10-max-cpu-bug.patch
 Patch7:		ccid-1.4.10-broadcom.patch
 Patch8:		ccid-1.4.10-add-1.4.29-readers.patch
 Patch9:		ccid-1.4.10-coverity.patch
+Patch10:	pcsc-lite-ccid-omnikey3022.patch
 
 BuildRequires:  libusb1-devel
 BuildRequires:  pcsc-lite-devel >= %{pcsc_lite_ver}
@@ -47,6 +48,7 @@ PC/SC Lite daemon.
 %patch7 -b .broadcom
 %patch8 -b .add_1_4_29_readers
 %patch9 -b .coverity
+%patch10 -b .omnikey3022
 
 
 %build
@@ -74,6 +76,9 @@ rm -rf $RPM_BUILD_ROOT/%{_sysconfdir}/reader.conf.d
 
 
 %changelog
+* Thu Mar 21 2019 Robert Relyea <rrelyea@redhat.com - 1.4.10-15
+- fix OmniKey 3121A readers
+
 * Wed May 23 2018 Robert Relyea <rrelyea@redhat.com - 1.4.10-14
 - fix coverity issues. Fixes are already upstream
 
