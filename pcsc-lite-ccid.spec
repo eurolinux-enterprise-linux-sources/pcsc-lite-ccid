@@ -4,7 +4,7 @@
 
 Name:           pcsc-lite-ccid
 Version:        1.4.10
-Release:        13%{?dist}
+Release:        14%{?dist}
 Summary:        Generic USB CCID smart card reader driver
 
 Group:          System Environment/Libraries
@@ -18,7 +18,8 @@ Patch4:		ccid-1.4.10-yubikey.patch
 Patch5:		ccid-readers-3.4.20.patch
 Patch6:		ccid-1.4.10-max-cpu-bug.patch
 Patch7:		ccid-1.4.10-broadcom.patch
-
+Patch8:		ccid-1.4.10-add-1.4.29-readers.patch
+Patch9:		ccid-1.4.10-coverity.patch
 
 BuildRequires:  libusb1-devel
 BuildRequires:  pcsc-lite-devel >= %{pcsc_lite_ver}
@@ -44,6 +45,8 @@ PC/SC Lite daemon.
 %patch5 -b .yubikey_2
 %patch6 -b .max_cpu_bug
 %patch7 -b .broadcom
+%patch8 -b .add_1_4_29_readers
+%patch9 -b .coverity
 
 
 %build
@@ -71,6 +74,12 @@ rm -rf $RPM_BUILD_ROOT/%{_sysconfdir}/reader.conf.d
 
 
 %changelog
+* Wed May 23 2018 Robert Relyea <rrelyea@redhat.com - 1.4.10-14
+- fix coverity issues. Fixes are already upstream
+
+* Mon May 21 2018 Robert Relyea <rrelyea@redhat.com - 1.4.10-13.1
+- Add support for 1.4.29 readers
+
 * Tue Sep 5 2017 Robert Relyea <rrelyea@redhat.com - 1.4.10-13
 - Add support for missing readers (broadcom, cherry).
 - mark deprecated readers as unsupported and needing an update

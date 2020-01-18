@@ -1,0 +1,28 @@
+diff -up ./src/ccid_usb.c.coverity ./src/ccid_usb.c
+--- ./src/ccid_usb.c.coverity	2018-05-23 13:08:07.321600659 -0700
++++ ./src/ccid_usb.c	2018-05-23 13:20:29.927742791 -0700
+@@ -1040,7 +1040,7 @@ static unsigned int *get_data_rates(unsi
+ 			n = len;
+ 	}
+ 
+-	int_array = calloc(n+1, sizeof(int));
++	int_array = calloc(n+1, sizeof(int_array[0]));
+ 	if (NULL == int_array)
+ 	{
+ 		DEBUG_CRITICAL("Memory allocation failed");
+diff -up ./src/ifdhandler.c.coverity ./src/ifdhandler.c
+--- ./src/ifdhandler.c.coverity	2018-05-23 13:08:25.497629268 -0700
++++ ./src/ifdhandler.c	2018-05-23 13:19:08.247618812 -0700
+@@ -139,8 +139,10 @@ static RESPONSECODE CreateChannelByNameO
+ 
+ 		/* The reader may have to start here so give it some time */
+ 		ret = CmdGetSlotStatus(reader_index, pcbuffer);
+-		if (IFD_NO_SUCH_DEVICE == ret)
+-			return ret;
++		if (IFD_NO_SUCH_DEVICE == ret) {
++			return_value = ret;
++			goto error;
++		}
+ 
+ 		/* save the current read timeout computed from card capabilities */
+ 		oldReadTimeout = ccid_descriptor->readTimeout;
